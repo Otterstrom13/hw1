@@ -166,6 +166,59 @@ VALUES (
     "1"
 )
 ;
+INSERT INTO movies (
+    title,
+    year,
+    rating,
+    studio_id
+)
+VALUES (
+    "The Dark Knight",
+    "2008",
+    "PG-13",
+    "1"
+)
+;
+
+INSERT INTO movies (
+    title,
+    year,
+    rating,
+    studio_id
+)
+VALUES (
+    "The Dark Knight Rises",
+    "2012",
+    "PG-13",
+    "1"
+)
+;
+INSERT INTO actors (
+    name
+)
+VALUES 
+("Christian Bale"),
+("Michael Caine"),
+("Liam Neeson"),
+("Katie Holmes"),
+("Gary Oldman")
+;
+
+INSERT INTO characters (
+    character,
+    actor_id,
+    movie_id
+)
+VALUES 
+
+("Bruce Wayne", "1","1"),
+("Alfred", "2","1"),
+("Ra's Al Ghul", "3","1"),
+("Rachel Dawes", "4","1"),
+("Commissioner Gordon", "5","1")
+;
+
+
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
@@ -174,12 +227,19 @@ VALUES (
 -- The SQL statement for the movies output
 -- TODO!
 
+SELECT movies.title, movies.year, movies.rating, studios.name
+FROM movies INNER JOIN studios on movies.studio_id = studios.id;
+
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
 .print "========"
 .print ""
 
+SELECT movies.title, actors.name, characters.character
+FROM movies INNER JOIN characters on movies.id = characters.movie_id;
+
+-- multiple inner joins?
 
 -- The SQL statement for the cast output
 -- TODO!
