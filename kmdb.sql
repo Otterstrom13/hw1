@@ -104,9 +104,6 @@
 .headers off
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
--- TODO!
-
-
 
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS movies;
@@ -114,7 +111,6 @@ DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS characters;
 
 -- Create new tables, according to your domain model
--- TODO!
 
 CREATE TABLE studios (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -144,7 +140,6 @@ CREATE TABLE characters (
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
--- TODO!
 
 INSERT INTO studios (
     name
@@ -201,7 +196,13 @@ VALUES
 ("Michael Caine"),
 ("Liam Neeson"),
 ("Katie Holmes"),
-("Gary Oldman")
+("Gary Oldman"),
+("Heath Ledger"),
+("Aaron Eckhart"),
+("Maggie Gyllenhaal"),
+("Tom Hardy"),
+("Joseph Gordon-Levitt"),
+("Anne Hathaway")
 ;
 
 INSERT INTO characters (
@@ -215,7 +216,17 @@ VALUES
 ("Alfred", "2","1"),
 ("Ra's Al Ghul", "3","1"),
 ("Rachel Dawes", "4","1"),
-("Commissioner Gordon", "5","1")
+("Commissioner Gordon", "5","1"),
+("Bruce Wayne", "1","2"),
+("Joker", "6","2"),
+("Harvey Dent", "7","2"),
+("Alfred", "2","2"),
+("Rachel Dawes", "8","2"),
+("Bruce Wayne", "1","3"),
+("Commissioner Gordon", "5","3"),
+("Bane", "9","3"),
+("John Blake", "10","3"),
+("Selina Kyle", "11","3")
 ;
 
 
@@ -225,7 +236,6 @@ VALUES
 .print ""
 
 -- The SQL statement for the movies output
--- TODO!
 
 SELECT movies.title, movies.year, movies.rating, studios.name
 FROM movies INNER JOIN studios on movies.studio_id = studios.id;
@@ -236,10 +246,9 @@ FROM movies INNER JOIN studios on movies.studio_id = studios.id;
 .print "========"
 .print ""
 
-SELECT movies.title, actors.name, characters.character
-FROM movies INNER JOIN characters on movies.id = characters.movie_id;
-
--- multiple inner joins?
 
 -- The SQL statement for the cast output
--- TODO!
+
+SELECT movies.title, actors.name, characters.character
+FROM movies INNER JOIN characters on movies.id = characters.movie_id
+INNER JOIN actors on characters.actor_id = actors.id;
